@@ -17,6 +17,7 @@ def create_tables():
     tables = [
         """CREATE TABLE IF NOT EXISTS infoapi(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                ip TEXT NOT NULL,
                 processor TEXT NOT NULL,
 				procactiv TEXT NOT NULL,
                 usuarios TEXT NOT NULL,
