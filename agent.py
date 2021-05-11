@@ -2,11 +2,16 @@
 #Fecha: 10/05/2021
 #Proyecto: Challenge Mercado Libre
 #Archivo: agent.py
-#Versión 1.0
+#Versión 2.0
 
 import requests, platform, psutil, os, json
+import socket, uuid
 ls =[]
 STATE = "running"
+
+
+ip = str(socket.gethostbyname(socket.gethostname()))
+print(ip)
 
 # Definimos usuarios activos del sistema
 usuarios = str(psutil.users())
@@ -28,7 +33,6 @@ so = platform.uname()[0]
 osv = platform.uname()[3]
 
 # Enviamos la petición
-payload = {"processor" : processor, "procactiv" : str(ls), "usuarios": usuarios, "os" : so, "osv" : osv}
+payload = {"ip": ip, "processor" : processor, "procactiv" : str(ls), "usuarios": usuarios, "os" : so, "osv" : osv}
 r = requests.post('http://localhost:8000/guardar', json=payload)
 print(r.text.encode('utf8'))
-
