@@ -2,7 +2,7 @@
 #Fecha: 10/05/2021
 #Proyecto: Challenge Mercado Libre
 #Archivo: api.py
-#Versión 1.0
+#Versión 2.0
 
 from flask import Flask, jsonify, request
 import apicontroller
@@ -30,12 +30,13 @@ def down_info():
 @app.route("/guardar", methods=["POST"])
 def insert_info():
     info_details = request.get_json()
+    ip = info_details["ip"]
     processor = info_details["processor"]
     procactiv = info_details["procactiv"]
     usuarios = info_details["usuarios"]
     os = info_details["os"]
     osv = info_details["osv"]
-    result = apicontroller.insert_info(processor, procactiv, usuarios, os, osv)
+    result = apicontroller.insert_info(ip, processor, procactiv, usuarios, os, osv)
     return jsonify(result)
 
 """@app.after_request
